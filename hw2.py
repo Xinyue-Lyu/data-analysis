@@ -37,9 +37,10 @@ for modes in range(1, 6):
     epsilon_start = epsilon + 0.1
 
 
-    norm = np.trapz(sol[:, 0] * sol[:, 0], xspan)   #A1 contains absolute values of ϕ_n?????////////
+    norm = np.trapz(sol[:, 0] * sol[:, 0], xspan)  
     A1[:, modes-1] = abs(sol[:,0]/np.sqrt(norm))
-    #plt.plot(xspan, A1, col[modes - 1])
-    #plt.show()
-print(np.shape(A1))
-print(np.shape(A2))
+    plt.plot(xspan, A1[:, modes-1], col[modes - 1])
+
+plt.show()
+#print(np.shape(A1))
+#print(A2)
