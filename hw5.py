@@ -164,8 +164,8 @@ same_sol = w_same.y
 
 # 3. Two pairs of oppositely “charged” vorticies
 w_pairs = (
-    np.exp(-(X-3)**2 - Y**2 / 20) - np.exp(-(X+4)**2 - Y**2 / 20) +  # Pair 1
-    np.exp(-(X-3)**2 - Y**2 / 20) - np.exp(-(X+4)**2 - Y**2 / 20)    # Pair 2
+    np.exp(-(X-3)**2 - Y**2 / 20) - np.exp(-(X+3)**2 - Y**2 / 20) +  # Pair 1
+    np.exp(-(X-5)**2 - Y**2 / 20) - np.exp(-(X+5)**2 - Y**2 / 20)    # Pair 2
 )
 
 # Flatten the vorticity field for solving
