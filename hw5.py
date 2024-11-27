@@ -146,17 +146,17 @@ end_LU = time.time()
 #print(f'LU time = {end_LU - start_LU} seconds')
  
 
-#############################PART C##################################
+#############################PART C & D##################################
 
 # 1. Two oppositely “charged” Gaussian vorticies next to each other
-w = np.exp(-((X + 5)**2 + (Y + 5)**2) / 20) - np.exp(-((X - 5)**2 + (Y - 5)**2) / 20)
+w = np.exp(-(X-3)**2 - Y**2 / 20) - np.exp(-(X+3)**2 - Y**2 / 20)
 w2 = w.reshape(N)
 w_opp = solve_ivp( fft_rhs, [0, 4], w2, t_eval=tspan, 
                   args=(nx, ny, N, A, B, C, K, nu), method='RK45')
 opp_sol = w_opp.y
 
 # 2. Two same “charged” Gaussian vorticies next to each other.
-w_same = np.exp(-((X + 5)**2 + (Y + 5)**2) / 20) + np.exp(-((X - 5)**2 + (Y - 5)**2) / 20)
+w_same = np.exp(-(X-3)**2 - Y**2 / 20) + np.exp(-(X+3)**2 - Y**2 / 20)
 w2_same = w_same.reshape(N)
 w_same = solve_ivp( fft_rhs, [0, 4], w2_same, t_eval=tspan, 
                   args=(nx, ny, N, A, B, C, K, nu), method='RK45')
@@ -164,8 +164,8 @@ same_sol = w_same.y
 
 # 3. Two pairs of oppositely “charged” vorticies
 w_pairs = (
-    np.exp(-((X - 5)**2 + (Y - 5)**2) / 20) - np.exp(-((X - 6)**2 + (Y - 5)**2) / 20) +  # Pair 1
-    np.exp(-((X + 5)**2 + (Y + 5)**2) / 20) - np.exp(-((X + 6)**2 + (Y + 5)**2) / 20)    # Pair 2
+    np.exp(-(X-3)**2 - Y**2 / 20) - np.exp(-(X+4)**2 - Y**2 / 20) +  # Pair 1
+    np.exp(-(X-3)**2 - Y**2 / 20) - np.exp(-(X+4)**2 - Y**2 / 20)    # Pair 2
 )
 
 # Flatten the vorticity field for solving
